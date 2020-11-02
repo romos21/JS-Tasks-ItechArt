@@ -110,3 +110,4 @@ function fromNow(date) {
     return (resultDay + ' days,' + resultMonth + ' month,' + resultYear + ' years');
 
 }
+

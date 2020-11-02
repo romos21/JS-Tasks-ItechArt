@@ -1,0 +1,28 @@
+body{
+    margin: 0 auto;
+    background-color: #ffe279;
+}
+
+button,input,select,div{
+    margin: 20px;
+    width: 20%;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    outline: none;
+}
+
+select,input{
+    background-color: #1c1602;
+    color: #ffe279;
+}
+
+div{
+    background-color: #56e360;
+    color: #1c1602;
+}
+
+button{
+    background-color: #7693fd;
+    color: #fff;
+}
