@@ -1,0 +1,14 @@
+body{
+    background-color: #4175ca;
+}
+
+div,button,input{
+    border: 5px solid #000;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    outline: none;
+    background-color: #fff;
+    width: 20%;
+}
+
