@@ -4,9 +4,9 @@ const resultNumSystemValue=document.getElementById('resultNumSystemValue');
 const button=document.getElementById('button');
 const result=document.getElementById('result');
 
-let curValue='';
-let curNumSystemValue='';
-let curResultNumSystemValue='';
+let curValue=0;
+let curNumSystemValue=0;
+let curResultNumSystemValue=0;
 
 numSystemValue.onchange=()=>curNumSystemValue=parseInt(numSystemValue.value);
 value.onchange=()=>curValue=parseInt(value.value);
@@ -14,7 +14,7 @@ resultNumSystemValue.onchange=()=>curResultNumSystemValue=parseInt(resultNumSyst
 
 function NumSystemChange(value,curNumSystem,resultNumSystem){
     if(curNumSystem!==10){
-        value=parseInt(value);
+        value=parseInt(value,curNumSystem);
     }
     return value.toString(resultNumSystem);
 }
