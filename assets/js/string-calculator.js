@@ -1,43 +1,49 @@
 const elements = [...document.getElementsByTagName('span')];
 const windowCalc = document.getElementById('window');
 
-function calculationStart(exception) {
-    let operationCash = exception.split('');
-    let exceptionElementFirst='';
-    let exceptionElementSecond='';
-    let operation='';
-    exceptionElementFirst+=operationCash[0];
-    let operationPointer=true;
-    for(let i=1;i<operationCash.length;i++){
-        if(/\d+|[.]/g.test(operationCash[i]) && operationPointer){
-            exceptionElementFirst+=operationCash[i]
+
+function operationCashFormatter(operationCash){
+    let firstEl='',
+        secEl='',
+        operation='';
+    for(let i=0;i<operationCash.length;i++){
+        if(!operation.length) {
+            while (!/[-+*/]/g.test(operationCash[i])) {
+                firstEl += operationCash[i];
+                i++;
+            }
         }
-        if(/[-+*/]/g.test(operationCash[i])){
-            if(operationPointer){
-                operation=operationCash[i];
-                operationPointer=false;
-            }
-            else {
-                exceptionElementSecond+=operationCash[i];
-            }
-        }else if(!operationPointer) {
-            exceptionElementSecond+=operationCash[i];
+        if (/[-+*/]/g.test(operationCash[i])){
+            operation=operationCash[i];
+        } else {
+            secEl=operationCash[i];
         }
     }
-    console.log(exceptionElementFirst,exceptionElementSecond);
+    firstEl=Number(firstEl);
+    secEl=Number(secEl);
+    return {firstEl,secEl,operation};
+}
+
+function calculationStart(exception) {
+    const {firstEl,secEl,operation}=operationCashFormatter(exception);
+
     if (operation === '+') {
-        return Number(exceptionElementFirst) + Number(exceptionElementSecond);
+        return Number(firstEl+secEl);
     } else if (operation === '-') {
-        return Number(exceptionElementFirst) - Number(exceptionElementSecond);
+        return Number(firstEl-secEl);
     } else if (operation === '*') {
-        return (Number(exceptionElementFirst) * Number(exceptionElementSecond)).toFixed(2);
+        return Number(firstEl*secEl);
     } else if (operation === '/') {
-        return (Number(exceptionElementFirst) / Number(exceptionElementSecond)).toFixed(2);
+        return Number(firstEl/secEl);
     }
 }
 
 elements.map(el => {
     el.addEventListener('click', (event) => {
+        if(el.textContent==='AC'){
+            windowCalc.textContent ='';
+            return ;
+        }
         if(/^[-]?(\d+([.]\d+)?)[-+/*][-]?(\d+([.]\d+)?)$/g.test(windowCalc.textContent)){
             if(event.target.textContent==='=') {
                 console.log(windowCalc.textContent);
