@@ -1,0 +1,26 @@
+body{
+    background-color: #4175ca;
+}
+input,div,button{
+    margin: 20px;
+    width: 20%;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px;
+    outline: none;
+}
+
+input{
+    background-color: #fff;
+    color: #4175ca;
+}
+
+div{
+    background-color: #56e360;
+    color: #fff;
+}
+
+button{
+    background-color: #7693fd;
+    color: #fff;
+}
