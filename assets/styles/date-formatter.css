@@ -1,0 +1,48 @@
+body{
+    margin: 0 auto;
+    background-image: url("https://gazetaingush.ru/sites/default/files/news/20170919-v-rossii-utverdili-kalendar-vyhodnyh-dney-na-2018-god/kalendar_0.jpg");
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+select,input,button,span{
+    margin: 0 10px;
+    background-color: #fff;
+    border: 5px solid #000;
+    border-radius: 20px;
+    width: 20%;
+    padding: 30px;
+    z-index: 2;
+    font-size: 25px;
+    outline: none;
+}
+
+button{
+    color: #fff;
+    background-color: #2a5db5;
+    border: 5px solid #fff;
+    border-radius: 20px;
+}
+
+.to-dark-bg{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    background-color: #000;
+    z-index: 1;
+}
+
+.result-date-form{
+    border: 10px solid #e90202;
+    border-radius: 0;
+    color: #e90202;
+    text-align: center;
+}
