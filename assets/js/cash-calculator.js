@@ -4,68 +4,67 @@ const operationSymbol=document.getElementById('operation-symbol');
 const calcButton=document.getElementById('calc-button');
 const resultValue=document.getElementById('result');
 
-console.log('addawdw');
 
-const object={
-    firstValue:firstValueInput.value,
-    secondValue:secondValueInput.value,
+const cashCalculatorObject={
+    firstValue:Number(firstValueInput.value),
+    secondValue:Number(secondValueInput.value),
     operationSymbolValue:operationSymbol.value,
     result: '',
-    calculationHistory:[],
+    calculationHistory:{},
+    isCorrectValue: function (){
+        const regEL=isFinite(this.firstValue) && isFinite(this.secondValue);
+        return regEL;
+    },
     switchResult: function (){
         switch (this.operationSymbolValue){
-            case'+':return Number(this.firstValue)+Number(this.secondValue);
-            case'-':return Number(this.firstValue)-Number(this.secondValue);
-            case'*':return Number(this.firstValue)*Number(this.secondValue);
-            case'/':return Number(this.firstValue)/Number(this.secondValue);
+            case'+':return this.firstValue+this.secondValue;
+            case'-':return this.firstValue-this.secondValue;
+            case'*':return this.firstValue*this.secondValue;
+            case'/':return this.firstValue/this.secondValue;
         }
     },
     calculation: function (){
-        let cashCheck=this.calculationHistory.find(exc=>{
+        /*let cashCheck=this.calculationHistory.find(exc=>{
             if(exc.exception===this.firstValue+this.operationSymbolValue+this.secondValue){
                 return exc;
             }
-        })
-        if(cashCheck){
-            return cashCheck.result;
+        })*/
+        for (let key in this.calculationHistory){
+            if(key===(this.firstValue+this.operationSymbolValue+this.secondValue).toString()){
+                console.log('here',this.calculationHistory[key] );
+                return this.calculationHistory[key];
+            }
         }
-        if(!/[+-]?\d+[.]?[\d+]?/g.test(this.firstValue) && !/[+-]?\d+[.]?[\d+]?/g.test(this.secondValue)){
+        /*if(cashCheck){
+            return cashCheck.result;
+        }*/
+        if(!this.isCorrectValue()){
             resultValue.style.display='none';
             document.getElementById('calc-error').style.display='block';
             return 0;
         }
 
         this.result=this.switchResult().toString();
-
-        if(this.result.toString().length>5)
-        {
-            this.result=this.result.toFixed(3);
-        }
-
-        this.calculationHistory=[
-            ...this.calculationHistory,
-            {
-                exception:this.firstValue+this.operationSymbolValue+this.secondValue,
-                resultSymbol:'=',
-                result:this.result,
-            }
-        ];
+        console.log(this.result);
+        const key=(this.firstValue + this.operationSymbolValue + this.secondValue).toString();
+        this.calculationHistory[key]=this.result;
+        console.log(this.calculationHistory);
         return this.result;
     }
 }
 
 firstValueInput.onchange=()=>{
-    object.firstValue=firstValueInput.value;
+    cashCalculatorObject.firstValue=Number(firstValueInput.value);
 };
 
 secondValueInput.onchange=()=>{
-    object.secondValue=secondValueInput.value;
+    cashCalculatorObject.secondValue=Number(secondValueInput.value);
 };
 
 operationSymbol.onchange=()=>{
-    object.operationSymbolValue=operationSymbol.value;
+    cashCalculatorObject.operationSymbolValue=operationSymbol.value;
 }
 
 calcButton.addEventListener('click',()=>{
-    resultValue.textContent=object.calculation();
+    resultValue.textContent=cashCalculatorObject.calculation();
 })
