@@ -7,8 +7,14 @@
     max-width: 200px;
     margin: auto;
 }
+
+
 .calc-window{
+    width: 100%;
     color: #fff;
+    background-color: black;
+    border: none;
+    outline: none;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -34,5 +40,8 @@ span{
     background-color: #f17a1e;
 }
 
+.operation{
+    background-color: #a2978f;
+}
 
 
